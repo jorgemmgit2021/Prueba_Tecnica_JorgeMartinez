@@ -1,0 +1,62 @@
+<dx-form
+    [(formData)]="_ClientesBusqueda"
+    [colCount]="2"
+    [alignItemLabels]="true"
+    [alignItemLabelsInAllGroups]="true">
+  <dxi-item itemType="group" caption="Opciones de consulta" [colSpan]="2" [colCount]="3">          
+      <dx-date-box [(value)]="_ClientesBusqueda.FchIni" pickerType="rollers" [colSpan]="1">
+        <dxo-label
+        location="left"
+        alignment="right"
+        caption="Fecha inicial">
+      </dxo-label>
+      </dx-date-box>
+      <dx-date-box [(value)]="_ClientesBusqueda.FchFnl" pickerType="rollers" [colSpan]="1">
+        <dxo-label
+        location="left"
+        alignment="right"
+        caption="Fecha final">
+      </dxo-label>
+      </dx-date-box>          
+      <dx-number-box [(value)]="_ClientesBusqueda.Edad" [min]="15" [max]="99" [showSpinButtons]="true" [colSpan]="1">
+      <dxo-label
+        location="left"
+        alignment="right"
+        caption="Edad del cliente">
+      </dxo-label>
+      </dx-number-box>
+      <dx-button stylingMode="contained" text="Buscar" type="info" class="button-info" [useSubmitBehavior]="false" (onClick)="getByParams($event)">
+      </dx-button>
+  </dxi-item>
+</dx-form>
+    <dx-data-grid id="dataGrid"
+      [dataSource]="_Clientes"
+      keyExpr="Id_Cliente"
+      [allowColumnResizing]="true"
+      [columnAutoWidth]="true"
+      [allowColumnReordering]="true">
+      <dxi-column dataField="Id_Cliente" caption="Consecutivo"></dxi-column>
+      <dxi-column dataField="Numero_identificacion" caption="Numero de identificación"></dxi-column>
+      <dxi-column dataField="Tipo_Identificacion" caption="Tipo de documento" cellTemplate="cellTemplate"></dxi-column>
+      <dxi-column dataField="Nombre_completo" caption="Nombre completo"></dxi-column>
+      <dxi-column dataField="Fecha_nacimiento" caption="Fecha de nacimiento" format="date"></dxi-column>              
+      <div *dxTemplate="let data of 'cellTemplate'">{{data.Tipo_Identificacion!=1?"Otro":"CC"}}</div>
+      <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+      <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+      <dxo-filter-row [visible]="true"></dxo-filter-row>
+      <dxo-search-panel [visible]="true"></dxo-search-panel>
+      <dxo-group-panel [visible]="true"></dxo-group-panel>
+      <dxo-selection mode="single"></dxo-selection>
+      <dxo-summary>
+        <dxi-group-item
+          summaryType="count">
+        </dxi-group-item>
+      </dxo-summary>
+      <dxo-editing
+        mode="popup"
+        [allowUpdating]="false"
+        [allowDeleting]="false"
+        [allowAdding]="false">
+      </dxo-editing>
+    </dx-data-grid>  
+

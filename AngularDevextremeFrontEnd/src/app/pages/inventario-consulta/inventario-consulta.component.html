@@ -1,0 +1,24 @@
+<div id="app-container">
+    <dx-item></dx-item>
+    <dx-data-grid id="dataGrid"
+      [dataSource]="_Inventarios"
+      keyExpr="Id_Item"
+      [allowColumnResizing]="true"
+      [columnAutoWidth]="true"
+      [allowColumnReordering]="true">
+      <dxi-column dataField="Id_Item" caption="Consecutivo" width="100"></dxi-column>
+      <dxi-column dataField="Codigo_item" caption="Codigo de referencia" width="120"></dxi-column>
+      <dxi-column dataField="Descripcion" width="200"></dxi-column>
+      <dxi-column dataField="Cantidad_stock"></dxi-column>
+      <dxi-column dataField="Stock_minimo"></dxi-column>
+      <dxi-column dataField="Precio" format="currency"></dxi-column>
+      <dxi-column dataField="Fecha_actualizacion"></dxi-column>
+      <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+      <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+      <dxo-filter-row [visible]="true"></dxo-filter-row>
+      <dxo-search-panel [visible]="true"></dxo-search-panel>
+      <dxo-group-panel [visible]="true"></dxo-group-panel>
+      <dxo-selection mode="single"></dxo-selection>
+      <dxo-export [enabled]="true"></dxo-export>
+    </dx-data-grid>
+</div>
